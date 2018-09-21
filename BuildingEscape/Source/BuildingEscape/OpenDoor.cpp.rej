@@ -1,0 +1,29 @@
+diff a/BuildingEscape/Source/BuildingEscape/OpenDoor.cpp b/BuildingEscape/Source/BuildingEscape/OpenDoor.cpp	(rejected hunks)
+@@ -22,20 +22,19 @@
+ {
+ 	Super::BeginPlay();
+ 
++	Owner = GetOwner();
++
+ 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
+ }
+ 
+ void UOpenDoor::OpenDoor()
+ {
++	Owner->SetActorRotation(FRotator(0.f, OpenAngle, 0.f));
++}
+ 
+-	// Find the owing Avtor
+-	AActor* Owner = GetOwner();
+-
+-	// Create a rotator
+-	FRotator NewRotation = FRotator(0.f, -60.f, 0.f);
+-
+-	// Set the door rotation
+-	Owner->SetActorRotation(NewRotation);
++void UOpenDoor::CloseDoor()
++{
++	Owner->SetActorRotation(FRotator(0.f, 0.f, 0.f));
+ }
+ 
+ 
